@@ -27,7 +27,6 @@ function addDestinationInfo(
 
 function validateInput(testInput) {
   if (!testInput) {
-
     return "Empty";
   } else if (isNaN(testInput)) {
     return "Not a Number";
@@ -36,14 +35,24 @@ function validateInput(testInput) {
   }
 }
 
-function formSubmission(
-  document,
-  list,
-  pilot,
-  copilot,
-  fuelLevel,
-  cargoLevel
-) {}
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+   
+
+   pilot = document.getElementById("pilotName");
+   copilot = document.getElementsByName("copilotName");
+   list = document.getElementsByName("faultyItems");
+   fuelLevel = document.getElementsByName("fuelLevel");
+
+   pilotStatus = document.getElementById("pilotStatus")
+
+  if (validateInput(pilot)=== "Empty") {
+    window.alert("Invalid Entry")
+  } else if (validateInput(pilot) === "Is a Number") {
+    window.alert("must be a valid entry");
+  } else if (validateInput(pilot) === "Not a Number") {
+    pilotStatus.innerHTML = `Pilot ${pilot} Ready`;
+  }
+}
 
 async function myFetch() {
   let planetsReturned;
