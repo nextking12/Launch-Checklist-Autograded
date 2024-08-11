@@ -9,13 +9,40 @@ function addDestinationInfo(
   star,
   distance,
   moons,
-  imageUrl 
+  imageUrl
 ) {
+  const missionTarget = document.getElementById("missionTarget");
+  const newH2 = document.createElement("h2");
+  const newH2Content = document.createTextNode("Mission Destination");
 
- /* const newH2 = document.createElement("h2")
-  newH2.innerHTML = "Mission Destination"
+  newH2.appendChild(newH2Content);
 
-  const newList = document.createElement("ol")*/
+  missionTarget.appendChild(newH2);
+
+  const newList = document.createElement("ol");
+  const newListItem1 = document.createElement("li");
+  const newListItem2 = document.createElement("li");
+  const newListItem3 = document.createElement("li");
+  const newListItem4 = document.createElement("li");
+  const newListItem5 = document.createElement("li");
+
+  newListItem1.innerHTML = `Name: ${name}`;
+  newListItem2.innerHTML = `Diameter: ${diameter} `;
+  newListItem3.innerHTML = `Star: ${star}`;
+  newListItem4.innerHTML = `Distance from Earth: ${distance}`;
+  newListItem5.innerHTML = `Number of Moons: ${moons}`;
+
+  newList.appendChild(newListItem1);
+  newList.appendChild(newListItem2);
+  newList.appendChild(newListItem3);
+  newList.appendChild(newListItem4);
+  newList.appendChild(newListItem5);
+
+  newH2.appendChild(newList);
+
+  const img = document.createElement("img");
+  img.src = `${imageUrl}`;
+  missionTarget.appendChild(img);
 
   // Here is the HTML formatting for our mission target div.
   /*
@@ -49,8 +76,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
 
- 
- if (
+  if (
     validateInput(pilot) === "Empty" ||
     validateInput(copilot) === "Empty" ||
     validateInput(cargoLevel) === "Empty"
@@ -100,7 +126,64 @@ async function myFetch() {
   return planetsReturned;
 }
 
-function pickPlanet(planets) {}
+function pickPlanet(planets) {
+  planets = [
+    {
+      name: "Tatooine",
+      diameter: "10465 km",
+      star: "Tatoo I & Tatoo II",
+      distance: "43000 light years from galactic core",
+      image:
+        "https://www.nasa.gov/wp-content/uploads/2023/03/earthsun20170412.png",
+      moons: 3,
+    },
+    {
+      name: "Pern",
+      diameter: "measurement is under dispute",
+      star: "Alpha Sagittarius (a.k.a. Rukbat)",
+      distance: "Varies - find a library",
+      image:
+        "https://smd-cms.nasa.gov/wp-content/uploads/2023/07/stsci-01h44ay5ztcv1npb227b2p650j-temp-medium.jpg?w=2560&format=webp",
+      moons: 2,
+    },
+    {
+      name: "Saturn/Titan",
+      diameter: "5149.5 km",
+      star: "Sol",
+      distance: "1.4 billion km from Earth",
+      image:
+        "https://solarsystem.nasa.gov/system/resources/detail_files/16278_PIA20016.jpg",
+      moons: 0,
+    },
+    {
+      name: "Mars",
+      diameter: "6779 km",
+      star: "Sol",
+      distance: "225 million km from Earth",
+      image:
+        "https://mars.nasa.gov/system/resources/detail_files/7808_global-color-views-mars-PIA00407-full2.jpg",
+      moons: 2,
+    },
+    {
+      name: "K2-18b",
+      diameter: "34500 km",
+      star: "K2-18",
+      distance: "110 light years from Earth",
+      image:
+        "https://www.nasa.gov/wp-content/uploads/2023/09/sep-11-23-stsci-01h9r8bbf7kfspgq2xx3a8sz34-1k.jpg",
+      moons: "unknown",
+    },
+    {
+      name: "Jupiter/Europa",
+      diameter: "3,121.6 km",
+      star: "Sol",
+      distance: "628.3 million km from Earth",
+      image: "https://apod.nasa.gov/apod/image/1609/Europa_Galileo_960.jpg",
+      moons: 0,
+    },
+  ];
+  return planets[Math.floor(Math.random() * planets.length)];
+}
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
