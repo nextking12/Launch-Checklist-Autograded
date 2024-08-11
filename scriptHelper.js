@@ -9,8 +9,14 @@ function addDestinationInfo(
   star,
   distance,
   moons,
-  imageUrl
+  imageUrl 
 ) {
+
+ /* const newH2 = document.createElement("h2")
+  newH2.innerHTML = "Mission Destination"
+
+  const newList = document.createElement("ol")*/
+
   // Here is the HTML formatting for our mission target div.
   /*
                  <h2>Mission Destination</h2>
@@ -43,7 +49,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
 
-  if (
+ 
+ if (
     validateInput(pilot) === "Empty" ||
     validateInput(copilot) === "Empty" ||
     validateInput(cargoLevel) === "Empty"
