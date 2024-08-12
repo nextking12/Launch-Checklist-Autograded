@@ -12,50 +12,17 @@ function addDestinationInfo(
   imageUrl
 ) {
   const missionTarget = document.getElementById("missionTarget");
-  const newH2 = document.createElement("h2");
-  const newH2Content = document.createTextNode("Mission Destination");
-
-  newH2.appendChild(newH2Content);
-
-  missionTarget.appendChild(newH2);
-
-  const newList = document.createElement("ol");
-  const newListItem1 = document.createElement("li");
-  const newListItem2 = document.createElement("li");
-  const newListItem3 = document.createElement("li");
-  const newListItem4 = document.createElement("li");
-  const newListItem5 = document.createElement("li");
-
-  newListItem1.innerHTML = `Name: ${name}`;
-  newListItem2.innerHTML = `Diameter: ${diameter} `;
-  newListItem3.innerHTML = `Star: ${star}`;
-  newListItem4.innerHTML = `Distance from Earth: ${distance}`;
-  newListItem5.innerHTML = `Number of Moons: ${moons}`;
-
-  newList.appendChild(newListItem1);
-  newList.appendChild(newListItem2);
-  newList.appendChild(newListItem3);
-  newList.appendChild(newListItem4);
-  newList.appendChild(newListItem5);
-
-  newH2.appendChild(newList);
-
-  const img = document.createElement("img");
-  img.src = `${imageUrl}`;
-  missionTarget.appendChild(img);
-
   // Here is the HTML formatting for our mission target div.
-  /*
-                 <h2>Mission Destination</h2>
+  missionTarget.innerHTML = 
+              `<h2>Mission Destination</h2>
                  <ol>
-                     <li>Name: </li>
-                     <li>Diameter: </li>
+                     <li>Name: ${name}</li>
+                     <li>Diameter: ${diameter}</li>
                      <li>Star: ${star}</li>
-                     <li>Distance from Earth: </li>
-                     <li>Number of Moons: </li>
+                     <li>Distance from Earth: ${distance}</li>
+                     <li>Number of Moons: ${moons}</li>
                  </ol>
-                 <img src="">
-    */
+                 <img src="${imageUrl}">`;
 }
 
 function validateInput(testInput) {
