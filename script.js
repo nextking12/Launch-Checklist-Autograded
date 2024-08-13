@@ -1,5 +1,7 @@
 /*const { formSubmission } = require("./scriptHelper");*/
 
+const { myFetch, addDestinationInfo, validateInput, formSubmission } = require("./scriptHelper");
+
 // Write your JavaScript code here!
 /*document.getElementById("formSubmit").addEventListener("click", formSubmission)*/
 window.addEventListener("load", function() {
@@ -28,17 +30,16 @@ window.addEventListener("load", function() {
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
  });
 
-    let listedPlanets;
+    let listedPlanets = [];
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-    let listedPlanetsResponse;
+    let listedPlanetsResponse = myFetch();
     listedPlanetsResponse.then(function (result) {
-        listedPlanets = result;
+        listedPlanets.push = result;
         console.log(listedPlanets);
     }).then(function () {
         console.log(listedPlanets);
         // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-    })
-   
- });
+       return addDestinationInfo(pickPlanet(listedPlanetsResponse));
+    }  )    
 
- 
+ });
