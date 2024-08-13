@@ -1,25 +1,34 @@
 /*const { formSubmission } = require("./scriptHelper");*/
 
-const { myFetch, addDestinationInfo, validateInput, formSubmission } = require("./scriptHelper");
+/*const {
+  myFetch,
+  addDestinationInfo,
+  validateInput,
+  formSubmission,
+} = require("./scriptHelper");*/
 
 // Write your JavaScript code here!
 /*document.getElementById("formSubmit").addEventListener("click", formSubmission)*/
-window.addEventListener("load", function() {
-   /*subButton = document.getElementById("formSubmit")
+window.addEventListener("load", function () {
+  /*subButton = document.getElementById("formSubmit")
    subButton.addEventListener("click", formSubmission());*/
-   let form = document.querySelector("form");
-   let list = document.getElementById("faultyItems");
+  /*let form = document.querySelector("form");*/
+  let form = document.querySelector("form");
+  let list = document.getElementById("faultyItems");
 
-   list.style.visibility = "hidden";
+  list.style.visibility = "hidden";
 
-   form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    /*document.addEventListener("submit", function (event) {
+    event.preventDefault();*/
+
     let pilotInput = document.querySelector("input[name = pilotName]");
-    let pilot = pilotInput.value
+    let pilot = pilotInput.value;
 
     let copilotInput = document.querySelector("input[name = copilotName]");
-    let copilot = copilotInput.value
+    let copilot = copilotInput.value;
 
     let cargoMassInput = document.querySelector("input[name = cargoMass]");
     let cargoLevel = Number(cargoMassInput.value);
@@ -28,18 +37,33 @@ window.addEventListener("load", function() {
     let fuelLevel = Number(fuelLevelInput.value);
 
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
- });
+    /* });*/
 
     let listedPlanets = [];
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse = myFetch();
-    listedPlanetsResponse.then(function (result) {
-        listedPlanets.push = result;
+    listedPlanetsResponse
+      .then(function (result) {
+        listedPlanets = result;
         console.log(listedPlanets);
-    }).then(function () {
+      })
+      .then(function () {
         console.log(listedPlanets);
-        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-       return addDestinationInfo(pickPlanet(listedPlanetsResponse));
-    }  )    
-
- });
+        
+        let storedPlanet = pickPlanet(listedPlanets);
+        if (fuelLevel < 10000 || cargoLevel >= 10000){
+            alert("Mission Grounded! Start Over...")
+            location.reload();
+        }else{
+        return addDestinationInfo(
+          document,
+          storedPlanet.name,
+          storedPlanet.diameter,
+          storedPlanet.star,
+          storedPlanet.distance,
+          storedPlanet.moons,
+          storedPlanet.image
+        )};
+      });
+  });
+});
