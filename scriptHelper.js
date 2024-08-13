@@ -13,8 +13,7 @@ function addDestinationInfo(
 ) {
   const missionTarget = document.getElementById("missionTarget");
   // Here is the HTML formatting for our mission target div.
-  missionTarget.innerHTML = 
-              `<h2>Mission Destination</h2>
+  missionTarget.innerHTML = `<h2>Mission Destination</h2>
                  <ol>
                      <li>Name: ${name}</li>
                      <li>Diameter: ${diameter}</li>
@@ -43,12 +42,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
 
+  
+
   if (
     validateInput(pilot) === "Empty" ||
     validateInput(copilot) === "Empty" ||
     validateInput(cargoLevel) === "Empty"
   ) {
-    alert("All Fields Are Required");
+    confirm("All Fields Are Required");
+    
   } else if (
     validateInput(pilot) === "Is a Number" ||
     validateInput(copilot) === "Is a Number" ||
@@ -66,19 +68,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
       cargoStatus.innerHTML = "Cargo mass too heavy for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "red";
-      
     } else if (fuelLevel < 10000 && cargoLevel < 10000) {
       cargoStatus.innerHTML = "Cargo mass low enough for launch";
       fuelStatus.innerHTML = "Fuel level too low for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "red";
-      
     } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
       cargoStatus.innerHTML = "Cargo mass too heavy for launch";
       fuelStatus.innerHTML = "Fuel level high enough for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "red";
-      
     } else {
       cargoStatus.innerHTML = "Cargo mass low enough for launch";
       fuelStatus.innerHTML = "Fuel level high enough for launch";
@@ -91,19 +90,18 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
   let planetsReturned;
 
-  planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-    return response.json()
-
+  planetsReturned = await fetch(
+    "https://handlers.education.launchcode.org/static/planets.json"
+  ).then(function (response) {
+    return response.json();
   });
 
   return planetsReturned;
 }
 
 function pickPlanet(planets) {
- 
   return planets[Math.floor(Math.random() * planets.length)];
-  }
-
+}
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;

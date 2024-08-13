@@ -1,18 +1,4 @@
-/*const { formSubmission } = require("./scriptHelper");*/
-
-/*const {
-  myFetch,
-  addDestinationInfo,
-  validateInput,
-  formSubmission,
-} = require("./scriptHelper");*/
-
-// Write your JavaScript code here!
-/*document.getElementById("formSubmit").addEventListener("click", formSubmission)*/
 window.addEventListener("load", function () {
-  /*subButton = document.getElementById("formSubmit")
-   subButton.addEventListener("click", formSubmission());*/
-  /*let form = document.querySelector("form");*/
   let form = document.querySelector("form");
   let list = document.getElementById("faultyItems");
 
@@ -20,9 +6,6 @@ window.addEventListener("load", function () {
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-
-    /*document.addEventListener("submit", function (event) {
-    event.preventDefault();*/
 
     let pilotInput = document.querySelector("input[name = pilotName]");
     let pilot = pilotInput.value;
@@ -37,10 +20,8 @@ window.addEventListener("load", function () {
     let fuelLevel = Number(fuelLevelInput.value);
 
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
-    /* });*/
 
     let listedPlanets = [];
-    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse = myFetch();
     listedPlanetsResponse
       .then(function (result) {
@@ -49,21 +30,17 @@ window.addEventListener("load", function () {
       })
       .then(function () {
         console.log(listedPlanets);
-        
+
         let storedPlanet = pickPlanet(listedPlanets);
-        if (fuelLevel < 10000 || cargoLevel >= 10000){
-            alert("Mission Grounded! Start Over...")
-            location.reload();
-        }else{
-        return addDestinationInfo(
-          document,
-          storedPlanet.name,
-          storedPlanet.diameter,
-          storedPlanet.star,
-          storedPlanet.distance,
-          storedPlanet.moons,
-          storedPlanet.image
-        )};
+        if (
+          fuelLevel < 10000 ||
+          cargoLevel >= 10000 ||
+          typeof pilot === "number" ||
+          typeof copilot === "number"
+        ) {
+          confirm("Mission Grounded! Check All Fields...");
+          event.preventDefault();
+        } else return addDestinationInfo(document, storedPlanet.name, storedPlanet.diameter, storedPlanet.star, storedPlanet.distance, storedPlanet.moons, storedPlanet.image);
       });
   });
 });
