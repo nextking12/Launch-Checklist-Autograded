@@ -26,10 +26,10 @@ window.addEventListener("load", function () {
     listedPlanetsResponse
       .then(function (result) {
         listedPlanets = result;
-        console.log(listedPlanets);
+        
       })
       .then(function () {
-        console.log(listedPlanets);
+        
 
         let storedPlanet = pickPlanet(listedPlanets);
         if (
